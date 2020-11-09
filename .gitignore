@@ -1,3 +1,7 @@
+# Terraform
+#  file that contains the secrets, ex: production.secrets.auto.tfvars
+*.secrets.auto.tfvars
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
