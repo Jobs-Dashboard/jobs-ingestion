@@ -18,57 +18,25 @@ variable "rds_instance_type" {
   description = "rds instance type"
 }
 
-variable "digdag_ssl_domain" {
+# like "jobs-dashboard.ml"
+variable "project_ssl_domain" {}
 
-}
+# This is a prefix to the project_ssl_domain. (ex:
+# project_ssl_domain="jobs-dashboard.ml" and digdag_dns_record="digdag" would
+# result in the following domain for the digdag server:
+# "digdag.jobs-dashboard.ml")
+variable "digdag_dns_record" {}
 
-variable "gitlab_user" {
+variable "gitlab_user" {}
 
-}
+variable "gitlab_token" {}
 
-variable "gitlab_token" {
+# This email address is used to send and receive email,
+# and used as a contact email.
+variable "email_address" {}
 
-}
+variable "postgres_user" {}
 
-variable "contact_email" {
-  type    = string
-  default = "bond.touch@daredata.engineering"
-}
-
-variable "postgres_user" {
-
-}
-
-variable "postgres_password" {
-
-}
-
-variable "snowflake_db_name" {
-  type = string
-}
-
-variable "snowflake_role" {
-  type = string
-}
-
-variable "snowflake_accountname" {
-  type = string
-}
-
-variable "snowflake_user" {
-  type = string
-}
-
-variable "snowflake_password" {
-  type = string
-}
+variable "postgres_password" {}
 
 variable "proxy_admin_password" {}
-
-
-variable "mail_host" {
-}
-
-variable "mail_username" {}
-
-variable "mail_password" {}

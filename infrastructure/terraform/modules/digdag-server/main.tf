@@ -16,7 +16,6 @@ data "template_file" "config_script" {
     gitlab_user          = var.gitlab_user
     gitlab_token         = var.gitlab_token
     ssl_domain           = var.ssl_domain
-    contact_email        = var.contact_email
     snowsql_config       = data.template_file.snowflake_config.rendered
     postgres_user        = var.postgres_user
     postgres_password    = var.postgres_password
@@ -25,7 +24,7 @@ data "template_file" "config_script" {
     snowflake_db_name    = var.snowflake_db_name
     digdag_s3_bucket     = aws_s3_bucket.bucket.bucket
     proxy_admin_password = var.proxy_admin_password
-    mail_from            = var.mail_from
+    email_address        = var.email_address
     mail_host            = var.mail_host
     mail_username        = var.mail_username
     mail_password        = var.mail_password

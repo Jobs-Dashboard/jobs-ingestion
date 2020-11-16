@@ -37,7 +37,7 @@ variable "gitlab_token" {}
 
 variable "ssl_domain" {}
 
-variable "contact_email" {}
+variable "email_address" {}
 
 variable "postgres_user" {}
 
@@ -49,7 +49,7 @@ variable "postgres_db_name" {}
 
 variable "proxy_admin_password" {}
 
-variable "mail_from" {}
+variable "email_address" {}
 
 variable "mail_host" {}
 

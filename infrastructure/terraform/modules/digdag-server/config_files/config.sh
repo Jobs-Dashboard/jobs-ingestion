@@ -5,7 +5,7 @@ echo "DIGDAG_DB_PASSWORD='${postgres_password}'" >> /etc/environment
 echo "DIGDAG_DB_HOST='${postgres_host}'" >> /etc/environment
 echo "DIGDAG_DB_NAME='${postgres_db_name}'" >> /etc/environment
 echo "DIGDAG_S3_BUCKET='${digdag_s3_bucket}'" >> /etc/environment
-echo "MAIL_FROM='${mail_from}'" >> /etc/environment
+echo "MAIL_FROM='${email_address}'" >> /etc/environment
 echo "MAIL_HOST='${mail_host}'" >>  /etc/environment
 echo "MAIL_USERNAME='${mail_username}'" >>  /etc/environment
 echo "MAIL_PASSWORD='${mail_password}'" >>  /etc/environment
@@ -24,9 +24,9 @@ sudo chmod +x /usr/local/bin/docker-compose
 sudo apt install -y make
 sudo git clone "https://${github_user}:${github_token}@github.com/${github_organization}/${github_repo}.git" /opt/app
 sudo git clone https://github.com/letsencrypt/letsencrypt /opt/letsencrypt
-/opt/letsencrypt/letsencrypt-auto certonly --standalone --email ${contact_email} --no-eff-email -d ${ssl_domain} --agree-tos
+/opt/letsencrypt/letsencrypt-auto certonly --standalone --email ${email_address} --no-eff-email -d ${ssl_domain} --agree-tos
 echo "root" >> /etc/cron.allow
-(crontab -l 2>/dev/null; echo "0 0 1 * * /opt/letsencrypt/letsencrypt-auto certonly --standalone --renew-by-default --email ${contact_email} --no-eff-email -d ${ssl_domain} --agree-tos") | crontab -
+(crontab -l 2>/dev/null; echo "0 0 1 * * /opt/letsencrypt/letsencrypt-auto certonly --standalone --renew-by-default --email ${email_address} --no-eff-email -d ${ssl_domain} --agree-tos") | crontab -
 cd /opt/app/server
 htpasswd -b -c nginx/.htpasswd admin ${proxy_admin_password}
 sudo make dc-start

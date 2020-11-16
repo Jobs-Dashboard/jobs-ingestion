@@ -5,6 +5,7 @@
 The deployment is done using the `deploy.sh` script located at the infrastructure folder.
 There is a set manual steps that you need to do before you run the script, and also a set of manual steps to do after running the script.
 
+1. [set up sending email](EMAIL.md)
 1. install terraform or check that it is installed
     * <https://learn.hashicorp.com/tutorials/terraform/install-cli#install-terraform>
 1. install aws cli or check that it is installed
@@ -34,3 +35,7 @@ Manual steps to do after the script:
     * go to [https://my.freenom.com/](https://my.freenom.com/) in Services -> My Domains -> Management Tools -> Nameservers
     * input the list of name servers into the custom nameservers
     * check that it's working with `nslookup <domain name>`
+
+## Notes
+
+* credentials and secrets are managed on <vault.bitwarden.com>
