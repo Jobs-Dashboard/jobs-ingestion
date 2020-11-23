@@ -1,0 +1,50 @@
+version: "3"
+
+services:
+  digdag_server:
+    restart: always
+    build:
+      context: ./digdag
+    environment:
+      DIGDAG_DB_USER: ${DIGDAG_DB_USER}
+      DIGDAG_DB_PASSWORD: ${DIGDAG_DB_PASSWORD}
+      DIGDAG_DB_NAME: ${DIGDAG_DB_NAME}
+      DIGDAG_DB_HOST: ${DIGDAG_DB_HOST}
+      DIGDAG_DB_PORT: 5432
+      DIGDAG_ENV: prod
+      DIGDAG_S3_BUCKET: ${DIGDAG_S3_BUCKET}
+      MAIL_FROM: ${MAIL_FROM}
+      MAIL_HOST: ${MAIL_HOST}
+      MAIL_PORT: 587
+      MAIL_USERNAME: ${MAIL_USERNAME}
+      MAIL_PASSWORD: ${MAIL_PASSWORD}
+    volumes:
+      - ./digdag/run.sh:/usr/src/app/run.sh
+    logging:
+        driver: syslog
+        options:
+          syslog-address: ${PAPERTRAIL_URL}
+          tag: digdag
+
+  nginx:
+    depends_on:
+      - digdag_server
+    restart: always
+    build:
+      context: ./nginx
+      args:
+        DIGDAG_SSL_DOMAIN: ${DIGDAG_SSL_DOMAIN}
+    volumes:
+      - /etc/letsencrypt:/etc/letsencrypt
+      # You can fill in the file with commands like this:
+      # htpasswd -b [-c] nginx/.htpasswd admin admin
+      # Then ou can authenticate like this:
+      # digdag sessions --basic-auth admin:admin -e 'http://172.50.10.3:9090/'
+    ports:
+      - "80:80"
+      - "443:443"
+    logging:
+        driver: syslog
+        options:
+          syslog-address: ${PAPERTRAIL_URL}
+          tag: nginx

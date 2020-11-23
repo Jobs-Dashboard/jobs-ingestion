@@ -10,17 +10,19 @@
 #--------------------------------------------------------------
 stage                = "production"
 digdag_instance_type = "t2.micro"
-ssh_key_name         = "tracking-production"
+ssh_key_name         = "jobs-ingestion-production.pem"
 rds_instance_type    = "db.t2.micro"
 project_ssl_domain   = "jobs-dashboard.ml"
-digdag_dns_record   = "digdag"
+# has the project_ssl_domain as a suffix
+digdag_ssl_domain = "digdag.jobs-dashboard.ml"
 postgres_user        = "digdag"
 email_address = "jobs.dashboard.data@gmail.com"
-gitlab_user          = "digdag-server"
+github_repo_url = "github.com/Jobs-Dashboard/jobs-ingestion.git"
 github_user = "buedaswag"
 # we need to specify the orginization because the repository
 # belongs to an organizartion and not a user
-github_organization = "Jobs-Dashboard"
-github_repo = "jobs-ingestion"
 # This name is just for labeling purposes
 iam_ses_smtp_username = "digdag"
+papertrail_url = "logs6.papertrailapp.com:30178"
+# still dont know if i need to include this here
+certificate_arn = ""

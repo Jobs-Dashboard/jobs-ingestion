@@ -19,10 +19,6 @@ TFSTATE_BUCKET_NAME="jobs-dashboard-tfstate"
 REGION="eu-west-1"
 
 echo "
-Please type the email address that will send and receive alert emails (like jobs.dashboard.data@gmail.com):"
-read EMAIL_ADDRESS
-
-echo "
 Please type the stage name (like production, staging or development):"
 read STAGE
 
@@ -38,4 +34,3 @@ terraform init \
 terraform apply \
     -var stage=$STAGE -var app_name=$APP_NAME \
     -var region=$REGION -var aws_profile=$AWS_PROFILE \
-    -var email_address=$EMAIL_ADDRESS

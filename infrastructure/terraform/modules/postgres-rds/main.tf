@@ -1,9 +1,14 @@
+#
+# Module that provides the postgres-rds instance that will serve as a
+# database server for the digdag server.
+#
+
 resource "aws_db_subnet_group" "default" {
-  name       = "${var.app_name}-${var.stage}-digdag-db-groupt"
+  name       = "${var.app_name}-${var.stage}-digdag-db-subnet-group"
   subnet_ids = [var.subnet_id_a, var.subnet_id_b] # at least 2 are required
 
   tags = {
-    Name = "My DB subnet group"
+    Name = "${var.app_name}-${var.stage}-digdag-db-subnet-group"
   }
 }
 

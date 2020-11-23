@@ -31,11 +31,11 @@ variable "instance_type" {
   type = string
 }
 
-variable "gitlab_user" {}
+variable "github_user" {}
 
-variable "gitlab_token" {}
+variable "github_repo_url" {}
 
-variable "ssl_domain" {}
+variable "digdag_ssl_domain" {}
 
 variable "email_address" {}
 

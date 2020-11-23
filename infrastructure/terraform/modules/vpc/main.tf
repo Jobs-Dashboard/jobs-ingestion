@@ -46,13 +46,6 @@ resource "aws_security_group" "tls_ssh" {
     cidr_blocks = ["0.0.0.0/0"]
   }
   ingress {
-    description = "Allow HTTP Connections" # Certbot needs http to verify the certificate
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-  ingress {
     description = "Allow SSH Connections"
     from_port   = 22
     to_port     = 22
@@ -84,9 +77,9 @@ resource "aws_security_group" "postgres" {
     cidr_blocks = ["10.0.0.0/24"]
   }
   egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
+    from_port = 0
+    to_port   = 0
+    protocol  = "-1"
     # only allows outbound traffic to subnet main_a
     cidr_blocks = ["10.0.0.0/24"]
   }

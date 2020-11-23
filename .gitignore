@@ -1,4 +1,10 @@
+###############################################################################
+# BEGIN Added by mig
+
+#
 # Terraform
+#
+
 #  file that contains the secrets, ex: production.secrets.auto.tfvars
 *.secrets.auto.tfvars
 # tfstate files and .terraform directories should not get checked in to git,
@@ -7,6 +13,15 @@
 *.tfstate.backup
 *.tfstate
 .terraform/
+
+#
+# other
+#
+experiments/
+.vscode/
+
+# END Added by mig
+###############################################################################
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

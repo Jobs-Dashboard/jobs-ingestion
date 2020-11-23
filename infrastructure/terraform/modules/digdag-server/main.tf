@@ -1,27 +1,20 @@
-data "aws_caller_identity" "current" {}
+#
+# Module that provides the digdag server
+#
 
-data "template_file" "snowflake_config" {
-  template = file("./modules/digdag-server/config_files/.snowsql/config")
-  vars = {
-    snowflake_accountname = var.snowflake_accountname
-    snowflake_user        = var.snowflake_user
-    snowflake_password    = var.snowflake_password
-    snowflake_role        = var.snowflake_role
-  }
-}
+# used as a prefix to the bucket name
+data "aws_caller_identity" "current" {}
 
 data "template_file" "config_script" {
   template = file("./modules/digdag-server/config_files/config.sh")
   vars = {
-    gitlab_user          = var.gitlab_user
-    gitlab_token         = var.gitlab_token
-    ssl_domain           = var.ssl_domain
-    snowsql_config       = data.template_file.snowflake_config.rendered
+    github_user          = var.github_user
+    github_repo_url      = var.github_repo_url
+    digdag_ssl_domain    = var.digdag_ssl_domain
     postgres_user        = var.postgres_user
     postgres_password    = var.postgres_password
     postgres_host        = var.postgres_host
     postgres_db_name     = var.postgres_db_name
-    snowflake_db_name    = var.snowflake_db_name
     digdag_s3_bucket     = aws_s3_bucket.bucket.bucket
     proxy_admin_password = var.proxy_admin_password
     email_address        = var.email_address
@@ -29,14 +22,14 @@ data "template_file" "config_script" {
     mail_username        = var.mail_username
     mail_password        = var.mail_password
   }
-  depends_on = [data.template_file.snowflake_config]
 }
 
 
 data "aws_ami" "ubuntu" {
   most_recent = true
 
-  owners = ["099720109477"] # Canonical
+  # Amazon Machine Image
+  owners = ["099720109477"]
 
   filter {
     name   = "name"
@@ -54,7 +47,7 @@ data "aws_ami" "ubuntu" {
 resource "aws_s3_bucket" "bucket" {
   bucket = "${data.aws_caller_identity.current.account_id}-${var.app_name}-${var.stage}-digdag"
   acl    = "private"
-  region = "eu-west-1"
+  region = var.region
 
   tags = {
     Service     = var.app_name
