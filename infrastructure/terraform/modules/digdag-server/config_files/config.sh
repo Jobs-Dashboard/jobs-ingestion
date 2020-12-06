@@ -1,5 +1,10 @@
 #!/bin/bash
 
+#
+# Startup script (ec2 user-data) for this server.
+# To view the output from running this visit /var/log/cloud-init-output.log
+#
+
 # set environment variables
 echo "DIGDAG_DB_USER='${postgres_user}'" >> /etc/environment
 echo "DIGDAG_DB_PASSWORD='${postgres_password}'" >> /etc/environment
@@ -19,5 +24,5 @@ echo "STAGE=${stage}" >> /etc/environment
 # setup and run digdag and nginx
 sudo -i
 sudo git clone "https://${github_user}:${github_token}@${github_repo_url}" /opt/app
-/bin/bash /opt/app/digdag/config.sh
-/bin/bash /opt/app/nginx/config.sh
+/bin/bash /opt/app/server/digdag/config.sh
+/bin/bash /opt/app/server/nginx/config.sh
