@@ -1,0 +1,10 @@
+timezone: UTC
+
+_error:
+  sh>: python send_mail.py --subject "Task ${task_name} failed" --body-text ""
+
+schedule:
+  daily>: 06:00:00
+
++scrape_data_scientist:
+  sh>: python web_scraper.py --country-code CH --last-n-days 1 --keywords "Data Scientist"

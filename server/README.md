@@ -2,9 +2,10 @@
 
 Running a digdag server means that directories can be packaged and submitted
 to it. Once submitted it runs the dags specified in any of the top-level
-.dig folders. We the following:
+`.dig` files. We have the following:
 
-- TODO.dig
+- mytopleveldig.dig
+- mytopleveldig.dig
 
 But before you submit these, you need to set up the server.
 
@@ -45,7 +46,7 @@ If you want to change the password for one of the digdag servers:
 
 ### Running the server
 
-You should now be able to run
+With docker-compose:
 
 ```bash
 docker-compose up
@@ -53,7 +54,14 @@ docker-compose up
 
 and see everything come to
 life! You will then be able to visit your browser on http://localhost:9090
-and see your digdag interfece.
+and see your digdag interface.
+
+With docker run:
+
+```bash
+docker build -t digdag .
+docker run -p 9090:9090 -p 9091:9091 digdag
+```
 
 ## Submitting projects
 

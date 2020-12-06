@@ -1,6 +1,9 @@
-variable "region" {}
+#
+# Defines the variables for this module. By default all variables are strings
+# unless otherwise specified.
+#
 
-# This name is just for labeling purposes
-variable "iam_ses_smtp_username" {
-    default = "digdag"
-}
+# Variables from terraform/variables.tf
+variable "app_name" {}
+variable "stage" {}
+variable "region" {}

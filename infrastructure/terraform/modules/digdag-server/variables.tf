@@ -1,62 +1,35 @@
-variable "app_name" {
-  type = string
-}
+#
+# Defines the variables for this module. By default all variables are strings
+# unless otherwise specified.
+#
 
-variable "stage" {
-  type = string
-}
-
-variable "ssh_key_name" {
-  type = string
-}
-
-variable "subnet_id" {
-  type = string
-}
-
-variable "gateway" {
-  type = string
-}
-
-variable "vpc_security_group_ids" {
-  type = list(string)
-}
-
-variable "server_private_ipv4" {
-  type    = string
-  default = "10.0.0.10" # some ip's are reserved
-}
-
-variable "instance_type" {
-  type = string
-}
-
-variable "github_user" {}
-
-variable "github_repo_url" {}
-
-variable "digdag_ssl_domain" {}
-
+# Variables from terraform/variables.tf
+variable "app_name" {}
+variable "stage" {}
+variable "region" {}
+variable "ssh_key_name" {}
+variable "proxy_admin_password" {}
 variable "email_address" {}
+variable "instance_type" {}
+variable "github_user" {}
+variable "github_token" {}
+variable "github_repo_url" {}
+variable "record_name" {}
+variable "full_record_name" {}
+variable "papertrail_url" {}
 
+# Variables from terraform/modules/vpc/variables.tf
+variable "vpc_id" {}
+variable "subnet_id" {}
+variable "gateway" {}
+
+# Variables from terraform/modules/postgres-rds/variables.tf
 variable "postgres_user" {}
-
 variable "postgres_password" {}
-
 variable "postgres_host" {}
-
 variable "postgres_db_name" {}
 
-variable "proxy_admin_password" {}
-
-variable "email_address" {}
-
+# Variables from terraform/modules/ses/variables.tf
 variable "mail_host" {}
-
 variable "mail_username" {}
-
 variable "mail_password" {}
-
-
-
-

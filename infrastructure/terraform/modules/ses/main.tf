@@ -3,14 +3,19 @@
 # with aws ses and smtp.
 #
 
-resource "aws_iam_user" "ses-smtp" {
-  name = "ses-smtp-user.${var.iam_ses_smtp_username}"
+resource "aws_iam_user" "_" {
+  name = "ses-smtp-user.${var.app_name}-${var.stage}"
+
+  tags = {
+    Service     = var.app_name
+    Environment = var.stage
+  }
 }
 
 # policy that allows for sending email
-resource "aws_iam_user_policy" "ses-smtp" {
+resource "aws_iam_user_policy" "_" {
   name   = "AmazonSesSendingAccess"
-  user   = aws_iam_user.ses-smtp.name
+  user   = aws_iam_user._.name
   policy = <<EOF
 {
     "Version": "2012-10-17",
@@ -26,16 +31,8 @@ EOF
 }
 
 # The way to generate the SMTP user and password required to send email is to
-# generate a aws_iam_access_key and then get the user and password from that (
-# check the outputs.tf for how to get the user and the password).
-resource "aws_iam_access_key" "ses-smtp" {
-  user = aws_iam_user.ses-smtp.name
-}
-
-output "smtp_user" {
-  value = aws_iam_access_key.ses-smtp.id
-}
-
-output "smtp_password" {
-  value = aws_iam_access_key.ses-smtp.ses_smtp_password_v4
+# generate a aws_iam_access_key and then get the user and password from that
+# (check the outputs.tf for how to get the user and the password).
+resource "aws_iam_access_key" "_" {
+  user = aws_iam_user._.name
 }

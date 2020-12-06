@@ -7,18 +7,22 @@
 
 #  file that contains the secrets, ex: production.secrets.auto.tfvars
 *.secrets.auto.tfvars
+*.secrets.tfvars
 # tfstate files and .terraform directories should not get checked in to git,
 # but they might exist in the
 # local file system from being generated when testing terraform configurations
 *.tfstate.backup
 *.tfstate
-.terraform/
+**/.terraform/
+*/.env
+*/.env.*
 
 #
 # other
 #
 experiments/
 .vscode/
+.htpasswd
 
 # END Added by mig
 ###############################################################################

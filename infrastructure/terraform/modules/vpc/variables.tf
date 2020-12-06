@@ -1,11 +1,10 @@
-variable "app_name" {
-  description = "The name of the App that will be launch"
-}
+#
+# Defines the variables for this module. By default all variables are strings
+# unless otherwise specified.
+#
 
-variable "stage" {
-  description = "Environment to launch"
-}
-
+variable "app_name" {}
+variable "stage" {}
 variable "availability_zone_a" {
   type    = string
   default = "eu-west-1a"

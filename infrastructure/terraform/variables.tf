@@ -1,38 +1,31 @@
-variable "app_name" {
-  description = "The name of the App that will be launched"
-}
+#
+# Defines the variables for a deployment. By default all variables are strings
+# unless otherwise specified.
+#
 
-variable "stage" {
-  description = "Environment to launched"
-}
+# Variables from `deploy_<stage>.sh`
+variable "app_name" {}
+variable "stage" {}
+variable "region" {}
+variable "availability_zone_a" {}
+variable "availability_zone_b" {}
+variable "aws_profile" {}
 
-variable "digdag_instance_type" {
-  description = "DigDag instance type"
-}
-
-variable "ssh_key_name" {
-  description = "ssh key name"
-}
-
-variable "rds_instance_type" {
-  description = "rds instance type"
-}
-
-# like "jobs-dashboard.ml"
-variable "project_ssl_domain" {}
-
-variable "github_user" {}
-
-variable "github_repo_url" {}
-
-# This email address is used to send and receive email,
-# and used as a contact email.
-variable "email_address" {}
-
+# Variables from `<stage>.tfvars`
+variable "digdag_instance_type" {}
+variable "ssh_key_name" {}
+variable "rds_instance_type" {}
+variable "zone_domain_name" {}
+variable "record_name" {}
+variable "full_record_name" {}
 variable "postgres_user" {}
-
-variable "postgres_password" {}
-
-variable "proxy_admin_password" {}
-
+variable "email_address" {}
+variable "github_repo_url" {}
+variable "github_user" {}
 variable "papertrail_url" {}
+variable "database_name" {}
+
+# Variables from `<stage>.secrets.tfvars`
+variable "postgres_password" {}
+variable "proxy_admin_password" {}
+variable "github_token" {}
