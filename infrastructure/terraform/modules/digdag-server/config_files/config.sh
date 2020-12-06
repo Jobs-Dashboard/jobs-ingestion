@@ -17,8 +17,7 @@ echo "PAPERTRAIL_URL=${papertrail_url}" >> /etc/environment
 echo "STAGE=${stage}" >> /etc/environment
 
 # setup and run digdag and nginx
-# same as the user ami created in terraform, this user has passwordless access to sudo
-sudo su - ubuntu
-git clone "https://${github_user}:${github_token}@${github_repo_url}" /opt/app
-/opt/app/digdag/config.sh
-/opt/app/nginx/config.sh
+sudo -i
+sudo git clone "https://${github_user}:${github_token}@${github_repo_url}" /opt/app
+/bin/bash /opt/app/digdag/config.sh
+/bin/bash /opt/app/nginx/config.sh

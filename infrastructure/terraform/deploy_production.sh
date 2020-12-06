@@ -31,6 +31,15 @@ terraform init \
     -backend-config="region=${REGION}" \
     -backend-config="bucket=${TFSTATE_BUCKET_NAME}" \
     -backend-config="key=${APP_NAME}-${STAGE}/terraform.tfstate"
+
+terraform destroy \
+    -target module.digdag-server.aws_instance._ \
+    -var stage=$STAGE -var app_name=$APP_NAME \
+    -var region=$REGION -var availability_zone_a=$AVAILABILITY_ZONE_A \
+    -var availability_zone_b=$AVAILABILITY_ZONE_B \
+    -var aws_profile=$AWS_PROFILE -var-file="${STAGE}.tfvars" \
+    -var-file="${STAGE}.secrets.tfvars"
+
 terraform apply \
     -var stage=$STAGE -var app_name=$APP_NAME \
     -var region=$REGION -var availability_zone_a=$AVAILABILITY_ZONE_A \
