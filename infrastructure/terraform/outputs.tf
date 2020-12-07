@@ -17,6 +17,9 @@ output "aws_instance_arn" {
 output "aws_eip_public_ip" {
   value = module.digdag-server.aws_eip_public_ip
 }
+output "aws_s3_bucket_name" {
+  value = module.digdag-server.aws_eip_public_ip
+}
 
 # Outputs from terraform/modules/postgres-rds/outputs.tf
 output "aws_db_instance_arn" {

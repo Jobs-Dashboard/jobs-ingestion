@@ -20,9 +20,10 @@ echo "RECORD_NAME=${record_name}" >> /etc/environment
 echo "PROXY_ADMIN_PASSWORD=${proxy_admin_password}" >> /etc/environment
 echo "PAPERTRAIL_URL=${papertrail_url}" >> /etc/environment
 echo "STAGE=${stage}" >> /etc/environment
+echo "GITHUB_USER=${github_user}" >> /etc/environment
+echo "GITHUB_TOKEN${github_token}" >> /etc/environment
+echo "GITHUB_REPO_URL${github_repo_url}" >> /etc/environment
 
 # setup and run digdag and nginx
-sudo -i
 sudo git clone "https://${github_user}:${github_token}@${github_repo_url}" /opt/app
 /bin/bash /opt/app/server/digdag/config.sh
-/bin/bash /opt/app/server/nginx/config.sh
