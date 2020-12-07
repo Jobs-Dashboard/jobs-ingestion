@@ -7,6 +7,7 @@ curl -o /bin/digdag --create-dirs -L "https://dl.digdag.io/digdag-0.9.41"
 chmod +x /bin/digdag
 
 # install python dependencies
+echo " install python dependencies"
 sudo apt install python3-pip python3-venv -y
 yes | python3 -m pip install --user --upgrade pip setuptools wheel
 python3 -m venv ~/.virtualenvs/venv
@@ -14,6 +15,8 @@ source ~/.virtualenvs/venv/bin/activate
 pip install -r /opt/app/server/digdag/requirements.txt
 
 # configure digdag
+echo "configure digdag"
+
 mkdir -p /usr/src/app
 cd /usr/src/app
 mkdir -p ./digdag/log
@@ -47,10 +50,10 @@ if [ "$DIGDAG_ENV" == 'production' ]; then
 
 " >> digdag_server.properties
 fi
-
+echo "run digdagf"
 # run digdag
-daemon --name="digdag" --output=/var/log/digdag-server.log sh \
 digdag server \
   --task-log ./digdag/sessions/ \
   --max-task-threads 5 \
-  --config ./digdag_server.properties
+  --config ./digdag_server.properties \
+  > /var/log/digdag-server.log &
