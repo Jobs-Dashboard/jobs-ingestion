@@ -28,8 +28,8 @@ echo "GITHUB_REPO_URL=${github_repo_url}" >> /etc/environment
 # Gives you a root prompt with a new shell environment
 sudo -i
 # setup and run digdag and nginx
-git clone "https://${github_user}:${github_token}@${github_repo_url}" /opt/app
+# git clone "https://${github_user}:${github_token}@${github_repo_url}" /opt/app
 
-/bin/bash /opt/app/server/digdag/config.sh
+# /bin/bash /opt/app/server/digdag/config.sh
 
-/bin/bash /opt/app/server/nginx/config.sh
+# /bin/bash /opt/app/server/nginx/config.sh

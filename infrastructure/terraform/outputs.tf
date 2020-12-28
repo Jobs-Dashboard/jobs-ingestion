@@ -29,14 +29,6 @@ output "aws_db_instance_host" {
   value = module.postgres-rds.db_host
 }
 
-# Outputs from terraform/modules/route-53/outputs.tf
-output "aws_route53_record_name" {
-  value = module.route-53.aws_route53_record_name
-}
-output "aws_route53_record_fqdn" {
-  value = module.route-53.aws_route53_record_fqdn
-}
-
 # Outputs from terraform/modules/ses/outputs.tf
 output "smtp_endpoint" {
   value = module.ses.smtp_endpoint

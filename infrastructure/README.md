@@ -6,7 +6,6 @@ The deployment is done using the `deploy.sh` script located at the infrastructur
 There is a set manual steps that you need to do before you run the script, and also a set of manual steps to do after running the script.
 
 1. alocate a domain name for the project by going to <https://my.freenom.com/>
-1. [set up aws certificate manager for the domain](CERTIFICATE_MANAGER.md)
 1. [set up sending email](EMAIL.md) to receive alerts from the digdag server
 1. install terraform or check that it is installed
     * <https://learn.hashicorp.com/tutorials/terraform/install-cli#install-terraform>
@@ -26,16 +25,12 @@ There is a set manual steps that you need to do before you run the script, and a
 
 1. Create a papertrail account and get the logging url (like logs6.papertrailapp.com:30178)
 
-Now run `deploy.sh`
+Now run `deploy_<stage>.sh`
 
-?do i need to do this? Manual steps to do after the script:
+Manual steps to do after the script:
 
-1. update the name servers for the domain
-    * take note of the aws_route53_zone.`resource-name`.name_servers
-    * go to [https://my.freenom.com/](https://my.freenom.com/) in Services -> My Domains -> Management Tools -> Nameservers
-    * input the list of name servers into the custom nameservers
-    * check that it's working with `nslookup <domain name>`
+1. Create a record on freenom with the name we chose in the `<stage>.tfvars` file and wait 30 min for it to take effect
 
-## Notes
+## Credentials and secrets
 
 * credentials and secrets are managed on <vault.bitwarden.com>

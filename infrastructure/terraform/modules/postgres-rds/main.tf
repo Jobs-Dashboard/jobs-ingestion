@@ -42,7 +42,7 @@ resource "aws_db_instance" "_" {
   allocated_storage      = 20
   storage_type           = "gp2"
   engine                 = "postgres"
-  engine_version         = "11.5"
+  engine_version         = "11.8"
   skip_final_snapshot    = true
   instance_class         = var.instance_type
   name                   = var.database_name
