@@ -40,7 +40,7 @@ terraform destroy \
     -var aws_profile=$AWS_PROFILE -var-file="${STAGE}.tfvars" \
     -var-file="${STAGE}.secrets.tfvars"
 
-terraform apply -auto-approve \
+terraform apply \
     -var stage=$STAGE -var app_name=$APP_NAME \
     -var region=$REGION -var availability_zone_a=$AVAILABILITY_ZONE_A \
     -var availability_zone_b=$AVAILABILITY_ZONE_B \
