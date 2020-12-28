@@ -30,6 +30,7 @@ Now run `deploy_<stage>.sh`
 Manual steps to do after the script:
 
 1. Create a record on freenom with the name we chose in the `<stage>.tfvars` file and wait 30 min for it to take effect
+1. after the record has taken effect, you must ssh into the ec2 machine with a root shell and run certbot by going to the nginx configuratin file and running the last line titled `# Run certbot`
 
 ## Credentials and secrets
 

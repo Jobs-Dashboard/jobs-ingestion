@@ -32,7 +32,7 @@ terraform init \
     -backend-config="bucket=${TFSTATE_BUCKET_NAME}" \
     -backend-config="key=${APP_NAME}-${STAGE}/terraform.tfstate"
 
-terraform destroy -auto-approve \
+terraform destroy \
     -target module.digdag-server.aws_instance._ \
     -var stage=$STAGE -var app_name=$APP_NAME \
     -var region=$REGION -var availability_zone_a=$AVAILABILITY_ZONE_A \

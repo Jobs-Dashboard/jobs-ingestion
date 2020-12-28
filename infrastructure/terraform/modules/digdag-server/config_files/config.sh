@@ -25,11 +25,12 @@ echo "GITHUB_USER=${github_user}" >> /etc/environment
 echo "GITHUB_TOKEN=${github_token}" >> /etc/environment
 echo "GITHUB_REPO_URL=${github_repo_url}" >> /etc/environment
 
-# Gives you a root prompt with a new shell environment
+# Gives you a root prompt with a new shell environment after setting the
+# environment variables.
 sudo -i
 # setup and run digdag and nginx
 git clone "https://${github_user}:${github_token}@${github_repo_url}" /opt/app
 
-/bin/bash /opt/app/server/digdag/config.sh
-
-/bin/bash /opt/app/server/nginx/config.sh
+# This command sources the scripts in the current shell (using `.`) and
+# runs them sequentially.
+. /opt/app/server/digdag/config.sh && . /opt/app/server/nginx/config.sh

@@ -18,13 +18,13 @@ htpasswd -b -c $password_file admin "${PROXY_ADMIN_PASSWORD}"
 # Create the Nginx server block file:
 # adding > /dev/null to prevent the contents of the here file
 # being displayed to stdout when it's created
-block="/etc/nginx/sites-available/$DOMAIN"
+block="/etc/nginx/sites-available/${DOMAIN}"
 sudo tee $block > /dev/null <<EOF
 server {
     listen 80;
     listen [::]:80;
 
-    server_name $DOMAIN www.$DOMAIN;
+    server_name ${DOMAIN} www.${DOMAIN};
 
     auth_basic "Restricted Content";
     auth_basic_user_file $password_file;
@@ -49,6 +49,6 @@ rm /etc/nginx/sites-enabled/default
 # Test configuration and reload if successful
 nginx -t && service nginx reload
 
-# run certbot
+# Run certbot
 sudo certbot run -n --nginx --agree-tos \
 -d "${DOMAIN}",www."${DOMAIN}" -m "${MAIL_FROM}" --redirect
