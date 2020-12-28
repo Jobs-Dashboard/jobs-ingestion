@@ -171,7 +171,7 @@ resource "aws_instance" "_" {
   security_groups      = [aws_security_group._.id]
   key_name             = var.ssh_key_name
   iam_instance_profile = aws_iam_instance_profile._.name
-  #user_data            = data.template_file._.rendered
+  user_data            = data.template_file._.rendered
 
   tags = {
     Service     = var.app_name
