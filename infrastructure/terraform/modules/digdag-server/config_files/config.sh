@@ -28,10 +28,14 @@ echo "GITHUB_REPO_URL=${github_repo_url}" >> /etc/environment
 # Gives you a root prompt with a new shell environment after setting the
 # environment variables.
 sudo -i
+# The previous command should source /etc/environment,
+# (as per http://manpages.ubuntu.com/manpages/precise/en/man5/sudoers.5.html)
+# but for some reason it's not, so we source it here.
+. /etc/environment
+
 # setup and run digdag and nginx
 git clone "https://${github_user}:${github_token}@${github_repo_url}" /opt/app
 
 # This command sources the scripts in the current shell (using `.`) and
-# runs them sequentially.
-printenv
+# runs them sequentially.s
 . /opt/app/server/digdag/config.sh && . /opt/app/server/nginx/config.sh
