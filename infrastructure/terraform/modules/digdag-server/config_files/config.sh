@@ -33,4 +33,5 @@ git clone "https://${github_user}:${github_token}@${github_repo_url}" /opt/app
 
 # This command sources the scripts in the current shell (using `.`) and
 # runs them sequentially.
+printenv
 . /opt/app/server/digdag/config.sh && . /opt/app/server/nginx/config.sh
