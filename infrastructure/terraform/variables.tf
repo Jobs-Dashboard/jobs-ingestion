@@ -15,7 +15,6 @@ variable "aws_profile" {}
 variable "digdag_instance_type" {}
 variable "ssh_key_name" {}
 variable "rds_instance_type" {}
-variable "zone_domain_name" {}
 variable "record_name" {}
 variable "full_record_name" {}
 variable "postgres_user" {}

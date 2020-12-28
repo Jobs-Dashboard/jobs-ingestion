@@ -11,6 +11,7 @@ data "template_file" "_" {
     postgres_user        = var.postgres_user
     postgres_password    = var.postgres_password
     postgres_host        = var.postgres_host
+    postgres_port        = var.postgres_port
     postgres_db_name     = var.postgres_db_name
     digdag_s3_bucket     = aws_s3_bucket._.bucket
     mail_host            = var.mail_host

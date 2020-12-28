@@ -32,18 +32,6 @@ module "ses" {
   region   = var.region
 }
 
-module "route-53" {
-  source = "./modules/route-53"
-
-  app_name         = var.app_name
-  stage            = var.stage
-  zone_domain_name = var.zone_domain_name
-  record_name      = var.record_name
-  full_record_name = var.full_record_name
-
-  aws_eip_public_ip = module.digdag-server.aws_eip_public_ip
-}
-
 module "postgres-rds" {
   source = "./modules/postgres-rds"
 
@@ -83,6 +71,7 @@ module "digdag-server" {
   postgres_user     = module.postgres-rds.db_username
   postgres_password = module.postgres-rds.db_password
   postgres_host     = module.postgres-rds.db_host
+  postgres_port     = module.postgres-rds.db_port
   postgres_db_name  = module.postgres-rds.db_name
   mail_host         = module.ses.smtp_endpoint
   mail_username     = module.ses.smtp_user

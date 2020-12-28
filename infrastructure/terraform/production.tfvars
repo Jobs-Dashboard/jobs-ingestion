@@ -16,8 +16,6 @@
 digdag_instance_type = "t2.micro"
 ssh_key_name         = "jobs-ingestion-production"
 rds_instance_type    = "db.t2.micro"
-# Domain name of the hosted zone where a record should be added
-zone_domain_name="jobs-dashboard.ml"
 # Name of the record we wish to add to the zone_domain_name
 # The record_name and zone_domain_name are combined in the
 # route-53 module.

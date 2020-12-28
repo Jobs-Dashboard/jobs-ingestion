@@ -8,6 +8,9 @@ output "aws_db_instance_arn" {
 output "db_host" {
   value = aws_db_instance._.address
 }
+output "db_port" {
+  value = aws_db_instance._.port
+}
 output "db_name" {
   value = aws_db_instance._.name
 }

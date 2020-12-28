@@ -27,6 +27,7 @@ variable "gateway" {}
 variable "postgres_user" {}
 variable "postgres_password" {}
 variable "postgres_host" {}
+variable "postgres_port" {}
 variable "postgres_db_name" {}
 
 # Variables from terraform/modules/ses/variables.tf
